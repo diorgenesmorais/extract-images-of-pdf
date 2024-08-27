@@ -1,0 +1,17 @@
+{
+  "name": "extract-images-of-pdf",
+  "version": "1.0.0",
+  "description": "Extrair imagens de um PDF",
+  "main": "index.mjs",
+  "author": "Diorgenes Morais",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^4.5.136",
+    "pngjs": "^7.0.0"
+  }
+}
