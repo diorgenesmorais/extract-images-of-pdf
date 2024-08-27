@@ -10,11 +10,11 @@ const processImage = async (img, pageNum, j) => {
         if (numChannels === 4) { // could it be PNG
             const png = new PNG({ width: img.width, height: img.height });
             png.data = img.data;
-            const imgPath = `./images/image-${pageNum}-${j}.png`;
+            const imgPath = `./images/image-${img.ref}-${pageNum}-${j}.png`;
             png.pack().pipe(fs.createWriteStream(imgPath));
             console.log(`Image PNG: ${imgPath}`);
         } else if (numChannels === 3) { // could it be JPEG
-            const imgPath = `./images/image-${pageNum}-${j}.jpg`;
+            const imgPath = `./images/image-${img.ref}-${pageNum}-${j}.jpg`;
             await sharp(img.data, { raw: { width: img.width, height: img.height, channels: numChannels } })
                 .toFormat('jpeg')
                 .toFile(imgPath);
@@ -70,6 +70,6 @@ const extractImagesFromPDF = async (pdfPath) => {
 const pdf1 = './meuPdf.pdf';
 const pdf2 = './Diorgenes_2024_pt.pdf';
 
-extractImagesFromPDF(pdf1)
+extractImagesFromPDF(pdf2)
     .then(() => console.log('Extração concluída'))
     .catch(err => console.error('Erro durante a extração:', err));
