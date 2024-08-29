@@ -12,6 +12,15 @@
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}/index.mjs"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Attachment",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/attachments.mjs"
         }
     ]
 }
