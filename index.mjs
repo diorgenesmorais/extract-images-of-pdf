@@ -10,11 +10,11 @@ const processImage = async (img, pageNum, j) => {
         if (numChannels === 4) { // could it be PNG
             const png = new PNG({ width: img.width, height: img.height });
             png.data = img.data;
-            const imgPath = `./images/image-${img.ref}-${pageNum}-${j}.png`;
+            const imgPath = `./images/image-${img.ref}-${img.name}-${pageNum}-${j}.png`;
             png.pack().pipe(fs.createWriteStream(imgPath));
             console.log(`Image PNG: ${imgPath}`);
         } else if (numChannels === 3) { // could it be JPEG
-            const imgPath = `./images/image-${img.ref}-${pageNum}-${j}.jpg`;
+            const imgPath = `./images/image-${img.ref}-${img.name}-${pageNum}-${j}.jpg`;
             await sharp(img.data, { raw: { width: img.width, height: img.height, channels: numChannels } })
                 .toFormat('jpeg')
                 .toFile(imgPath);
@@ -36,6 +36,7 @@ const getImageBuffer = async (page, ops, pageNum) => {
             
                     if (page.objs.has(imgName)) {
                         const imgObj = await page.objs.get(imgName);
+                        imgObj['name'] = imgName;
                         images.push(imgObj);
                     }
                 }
